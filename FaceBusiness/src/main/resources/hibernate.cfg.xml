@@ -1,0 +1,81 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE hibernate-configuration PUBLIC "-//Hibernate/Hibernate Configuration DTD 3.0//EN" "http://hibernate.sourceforge.net/hibernate-configuration-3.0.dtd">
+<hibernate-configuration>
+	<session-factory>
+		<property name="hibernate.dialect">org.hibernate.dialect.MySQLDialect</property>
+		<property name="hibernate.connection.driver_class">com.mysql.jdbc.Driver</property>
+		<property name="hibernate.connection.url">jdbc:mysql://localhost:3306/psfotos</property>
+		<property name="hibernate.connection.username">psfotos</property>
+		<property name="hibernate.connection.password">psfotos</property>
+		<property name="hibernate.connection.autocommit">true</property>
+
+		<!-- <property name="hibernate.connection.url">jdbc:mysql://personastars.com:3306/persona6_photobank</property>
+			<property name="hibernate.connection.username">persona6_pers</property> <property
+			name="hibernate.connection.password">pers</property> -->
+		<property name="hibernate.show_sql">true</property>
+		<property name="hibernate.format_sql">false</property>
+		<property name="hibernate.use_sql_comments">false</property>
+		<property name="hibernate.connection.useUnicode">false</property>
+		<property name="hibernate.connection.characterEncoding">UTF-8</property>
+		<property name="hibernate.jdbc.use_streams_for_binary">true</property>
+
+		<property name="hibernate.connection.autoReconnect">true</property>
+		<property name="hibernate.connection.autoReconnectForPools">true</property>
+		<property name="hibernate.connection.is-connection-validation-required">true</property>
+		<!-- <property name="hibernate.hbm2ddl.auto">update</property> -->
+
+		<property name="hibernate.connection.provider_class">org.hibernate.connection.C3P0ConnectionProvider</property>
+		<property name="c3p0.acquireIncrement">3</property>
+		<property name="c3p0.idleTestPeriod">100</property>
+		<property name="c3p0.maxSize">1000</property>
+		<property name="c3p0.maxStatements">0</property>
+		<property name="c3p0.timeout">100</property>
+		<property name="c3p0.autoReconnect">true</property>
+		<property name="c3p0.preferredTestQuery">SELECT 1</property>
+		<property name="c3p0.testConnectionOnCheckout">true</property>
+		<property name="c3p0.idle_test_period">100</property>
+		<property name="cache.provider_class">org.hibernate.cache.NoCacheProvider</property>
+		<property name="cache.use_query_cache">false</property>
+		<property name="cache.use_minimal_puts">false</property>
+		<property name="max_fetch_depth">10</property>
+		<property name="c3p0.preferredTestQuery">SELECT 1</property>
+		<property name="c3p0.testConnectionOnCheckout">true</property>
+
+		<mapping resource="org/bambrikii/site/base/auth/model/Group.hbm.xml" />
+		<mapping resource="org/bambrikii/site/base/auth/model/Privilege.hbm.xml" />
+		<mapping resource="org/bambrikii/site/base/auth/model/User.hbm.xml" />
+
+		<mapping
+			resource="org/bambrikii/site/base/configuration/model/Configuration.hbm.xml" />
+
+		<mapping resource="org/bambrikii/site/base/logging/Source.hbm.xml" />
+		<mapping resource="org/bambrikii/site/base/logging/Log.hbm.xml" />
+		<mapping resource="org/bambrikii/site/base/logging/Counter.hbm.xml" />
+
+		<mapping resource="org/bambrikii/site/base/model/Language.hbm.xml" />
+		<mapping resource="org/bambrikii/site/base/model/Phone.hbm.xml" />
+
+		<mapping resource="org/bambrikii/site/base/payment/model/Order.hbm.xml" />
+		<mapping resource="org/bambrikii/site/base/payment/model/OrderItem.hbm.xml" />
+		<mapping resource="org/bambrikii/site/base/payment/model/Product.hbm.xml" />
+
+		<mapping resource="org/bambrikii/site/base/payment/model/Currency.hbm.xml" />
+		<mapping resource="org/bambrikii/site/base/payment/model/Price.hbm.xml" />
+
+		<mapping resource="org/bambrikii/site/base/payment/model/PaymentSystem.hbm.xml" />
+
+
+		<!-- Discussion -->
+		<mapping
+			resource="org/bambrikii/web/site/services/discussion/dao/Topic.hbm.xml" />
+		<mapping
+			resource="org/bambrikii/web/site/services/discussion/dao/Message.hbm.xml" />
+
+		<mapping resource="org/bambrikii/kbManager/kb2/Artefact.hbm.xml" />
+		<mapping resource="org/bambrikii/kbManager/kb2/ArtefactAsText.hbm.xml" />
+		<mapping resource="org/bambrikii/kbManager/kb2/ArtefactAsImage.hbm.xml" />
+
+		<mapping resource="org/bambrikii/kbManager/kb2/Relation.hbm.xml" />
+
+	</session-factory>
+</hibernate-configuration>

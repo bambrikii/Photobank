@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN" "http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+<hibernate-mapping>
+	<class name="org.bambrikii.site.base.auth.model.Privilege" table="site_privileges">
+		<id column="site_privilege_id" name="id" type="integer">
+			<generator class="identity" />
+		</id>
+		<property column="name" name="name" type="string" />
+		<property column="_order" name="order" type="int" />
+		<list name="groups" table="site_groups_privileges" cascade="all">
+			<key column="id_site_privilege" />
+			<index column="site_group_privilege_id" />
+			<many-to-many class="org.bambrikii.site.base.auth.model.Group">
+				<column name="id_site_group" />
+			</many-to-many>
+		</list>
+	</class>
+</hibernate-mapping>

@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN" "http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+<hibernate-mapping>
+	<joined-subclass name="org.bambrikii.photobank.model.FileDimension"
+		extends="org.bambrikii.site.base.payment.model.Product" table="_photobank_file_size">
+		<key column="product_id" />
+		<property column="_order" name="order" type="integer" />
+		<property column="max_dim" name="maxDim" type="int" />
+	</joined-subclass>
+</hibernate-mapping>

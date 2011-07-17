@@ -1,0 +1,5 @@
+The Java Interface.
+
+Writing the interface to get the ANTLR output is a little more complicated than earlier versions, but the result is more powerful. The basic glue to get things going has changed as well.
+Software developers and language tool implementors can use ANTLR to implement Domain-Specific Languages, to generate parts of language compilers and translators, or even to help them build tools that parse complex XML.
+

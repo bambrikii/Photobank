@@ -1,0 +1,5 @@
+ALTER TABLE `_photobank_transactions`
+	MODIFY COLUMN `status` ENUM('NEW','PENDING','APPROVED','REJECTED','CANCELLED')
+		CHARACTER SET cp1251 COLLATE cp1251_general_ci
+		DEFAULT 'NEW'
+;

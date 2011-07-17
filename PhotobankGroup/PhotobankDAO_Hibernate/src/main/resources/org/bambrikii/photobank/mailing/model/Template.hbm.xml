@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN" "http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+<hibernate-mapping>
+	<class name="org.bambrikii.photobank.mailing.model.Template"
+		table="site_email_template">
+		<id column="id" name="id" type="integer">
+			<generator class="identity" />
+		</id>
+		<property column="key" name="key" type="string" update="true" />
+		<property column="subject" name="subject" type="string"
+			update="true" />
+		<property column="body" name="body" type="string" />
+		<property column="content_type" name="contentType">
+			<type name="org.hibernate.type.EnumType">
+				<param name="enumClass">org.bambrikii.photobank.mailing.model.TemplateContentTypeEnum</param>
+				<param name="type">12</param>
+			</type>
+		</property>
+	</class>
+</hibernate-mapping>

@@ -1,0 +1,1 @@
+ALTER TABLE `_photobank_file_iptc_field` MODIFY COLUMN `Value` VARCHAR(3048) CHARACTER SET cp1251 COLLATE cp1251_bin NOT NULL;

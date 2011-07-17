@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN" "http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+<hibernate-mapping>
+	<class name="org.bambrikii.kbManager.parser.model.Knowledge"
+		table="kb_knowledge">
+		<id column="id" name="id" type="integer">
+			<generator class="identity" />
+		</id>
+		<property column="key" name="key" type="string" />
+		<many-to-one class="org.bambrikii.kbManager.parser.model.Knowledge"
+			column="subject_id" name="subject" />
+		<many-to-one class="org.bambrikii.kbManager.parser.model.Knowledge"
+			column="object_id" name="object" />
+	</class>
+</hibernate-mapping>

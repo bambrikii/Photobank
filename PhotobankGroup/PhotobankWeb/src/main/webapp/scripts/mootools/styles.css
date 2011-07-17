@@ -1,0 +1,53 @@
+#gallery_container {
+	width: 492px;
+	height: 158px;
+	padding: 6px 0px 0px 0px;
+	display: block;
+	position: relative;
+	margin: 0px;
+}
+
+#gallery_container .addfwd {
+	display: block;
+	position: absolute;
+	cursor: pointer;
+	width: 26px;
+	height: 100%;
+	top: 0px;
+	right: -21px;
+	background: url(../../images/top_scrl_r.gif) no-repeat center;
+}
+
+#gallery_container .addbkwd {
+	display: block;
+	position: absolute;
+	cursor: pointer;
+	width: 24px;
+	height: 100%;
+	top: 0px;
+	left: -21px;
+	background: url(../../images/top_scrl_l.gif) no-repeat center;
+}
+
+#thumb_container {
+	overflow: hidden;
+	width: 442px;
+	height: 160px;
+	margin: 0px auto 0px;
+}
+
+#thumbs {
+	width: 6000px;
+	vertical-align: middle;
+}
+
+#thumbs a {
+	padding: 0px;
+	margin: 0px;
+	clear: both;
+	vertical-align: middle;
+}
+
+#thumbs a img {
+	border: 1px solid;
+}

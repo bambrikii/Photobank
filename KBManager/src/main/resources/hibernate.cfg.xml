@@ -1,0 +1,45 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE hibernate-configuration PUBLIC "-//Hibernate/Hibernate Configuration DTD 3.0//EN" "http://hibernate.sourceforge.net/hibernate-configuration-3.0.dtd">
+<hibernate-configuration>
+	<session-factory>
+		<!-- <property name="hibernate.dialect">org.hibernate.dialect.SQLServerDialect</property>
+			<property name="hibernate.connection.driver_class">net.sourceforge.jtds.jdbc.Driver</property>
+			<property name="hibernate.connection.url">jdbc:jtds:sqlserver://localhost/TestDB;user=sa;password=asd</property>
+			<property name="hibernate.show_sql">false</property> <property name="hibernate.connection.autocommit">true</property>
+			<property name="hibernate.connection.useUnicode">true</property> <property
+			name="hibernate.connection.characterEncoding">UTF-8</property> -->
+
+		<property name="hibernate.dialect">org.hibernate.dialect.MySQLDialect</property>
+		<property name="hibernate.connection.driver_class">com.mysql.jdbc.Driver</property>
+		<property name="hibernate.connection.url">jdbc:mysql://localhost:3306/psfotos</property>
+		<property name="hibernate.connection.username">psfotos</property>
+		<property name="hibernate.connection.password">psfotos</property>
+		<property name="hibernate.connection.autocommit">true</property>
+		<property name="hibernate.show_sql">true</property>
+		<property name="hibernate.format_sql">true</property>
+		<property name="hibernate.use_sql_comments">false</property>
+		<property name="hibernate.connection.useUnicode">false</property>
+		<property name="hibernate.connection.characterEncoding">UTF-8</property>
+		<property name="hibernate.jdbc.use_streams_for_binary">true</property>
+
+		<property name="hibernate.connection.autoReconnect">true</property>
+		<property name="hibernate.connection.autoReconnectForPools">true</property>
+		<property name="hibernate.connection.is-connection-validation-required">true</property>
+		<!-- <property name="hibernate.hbm2ddl.auto">update</property> -->
+		<property name="hibernate.connection.provider_class">org.hibernate.connection.C3P0ConnectionProvider</property>
+
+		<mapping resource="org/bambrikii/kbManager/feeds/FeedSite.hbm.xml" />
+		<mapping resource="org/bambrikii/kbManager/feeds/FeedNews.hbm.xml" />
+
+		<mapping resource="org/bambrikii/kbManager/parser/Grammar.hbm.xml" />
+		<mapping resource="org/bambrikii/kbManager/parser/Knowledge.hbm.xml" />
+		<mapping resource="org/bambrikii/kbManager/parser/KnowledgeAsText.hbm.xml" />
+
+		<mapping resource="org/bambrikii/kbManager/kb2/Artefact.hbm.xml" />
+		<mapping resource="org/bambrikii/kbManager/kb2/ArtefactAsText.hbm.xml" />
+		<mapping resource="org/bambrikii/kbManager/kb2/ArtefactAsImage.hbm.xml" />
+
+		<mapping resource="org/bambrikii/kbManager/kb2/Relation.hbm.xml" />
+
+	</session-factory>
+</hibernate-configuration>

@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN" "http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+<hibernate-mapping>
+	<class name="org.bambrikii.site.base.payment.model.PaymentSystem"
+		table="site_payment_system">
+		<id column="id" name="id" type="integer">
+			<generator class="identity" />
+		</id>
+		<property column="name" name="name" type="string" not-null="true" />
+		<property column="checkout_url" name="checkoutUrl" type="string" />
+		<property column="default_merchant_login" name="defaultMerchantLogin"
+			type="string" />
+		<property column="sort_order" name="order" />
+		<many-to-one class="org.bambrikii.site.base.payment.model.Currency"
+			column="currency_id" name="currency" />
+		<property column="status" name="status">
+			<type name="org.hibernate.type.EnumType">
+				<param name="enumClass">org.bambrikii.site.base.payment.model.PaymentSystemStatusEnum</param>
+				<param name="type">12</param>
+			</type>
+		</property>
+	</class>
+</hibernate-mapping>

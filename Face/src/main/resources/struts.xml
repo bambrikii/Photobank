@@ -1,0 +1,77 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<!DOCTYPE struts PUBLIC
+    "-//Apache Software Foundation//DTD Struts Configuration 2.0//EN"
+    "http://struts.apache.org/dtds/struts-2.0.dtd">
+
+<struts>
+	<package name="site" extends="struts-default">
+		<action name="index" class="org.bambrikii.web.site.IndexAction">
+			<result>/jsp/index.jsp</result>
+		</action>
+
+		<action name="login" class="org.bambrikii.web.site.security.LoginAction">
+			<result name="loggedin">/jsp/security/login.jsp</result>
+			<result name="error">/jsp/security/login.jsp</result>
+			<result>/jsp/security/login.jsp</result>
+		</action>
+
+	</package>
+	<package name="services_kb" namespace="/services/kb" extends="struts-default">
+		<action name="index" class="org.bambrikii.web.site.services.kb.KBAction">
+			<result name="find">/jsp/services/kb/find.jsp</result>
+			<result>/jsp/services/kb/index.jsp</result>
+		</action>
+
+		<action name="parsing"
+			class="org.bambrikii.web.site.services.kb.KBParsingAction">
+			<result name="success">/jsp/services/kb/parsing/index.jsp</result>
+			<result name="parse">/jsp/services/kb/parsing/index.jsp</result>
+			<result>/jsp/services/kb/parsing/index.jsp</result>
+		</action>
+	</package>
+
+	<package name="services_discussions" namespace="/services/discussion"
+		extends="struts-default">
+		<action name="index"
+			class="org.bambrikii.web.site.services.discussion.TopicAction">
+			<result name="edit">/jsp/services/discussion/topic/edit.jsp
+			</result>
+			<result name="list">/jsp/services/discussion/topic/list.jsp</result>
+			<result>/jsp/services/discussion/topic/list.jsp</result>
+		</action>
+		<action name="topic"
+			class="org.bambrikii.web.site.services.discussion.TopicAction">
+			<result name="edit">/jsp/services/discussion/topic/edit.jsp
+			</result>
+			<result name="list">/jsp/services/discussion/topic/list.jsp</result>
+			<result>/jsp/services/discussion/topic/list.jsp</result>
+		</action>
+		<action name="message"
+			class="org.bambrikii.web.site.services.discussion.MessageAction">
+			<result name="edit">/jsp/services/discussion/message/edit.jsp
+			</result>
+			<result name="list">/jsp/services/discussion/message/index.jsp
+			</result>
+			<result>/jsp/services/discussion/message/index.jsp</result>
+		</action>
+	</package>
+
+	<package name="services_dictionary" namespace="/services/dictionary"
+		extends="struts-default">
+		<action name="index"
+			class="org.bambrikii.web.site.services.dictionary.DictionaryAction">
+			<result name="index">/jsp/services/dictionary/index.jsp</result>
+			<result name="list">/jsp/services/dictionary/index.jsp</result>
+			<result>/jsp/services/dictionary/index.jsp</result>
+		</action>
+
+		<action name="edit"
+			class="org.bambrikii.web.site.services.dictionary.DictionaryEditAction">
+			<result name="index">/jsp/services/dictionary/edit/index.jsp</result>
+			<result name="list">/jsp/services/dictionary/edit/index.jsp</result>
+			<result>/jsp/services/dictionary/edit/index.jsp</result>
+		</action>
+	</package>
+
+</struts>

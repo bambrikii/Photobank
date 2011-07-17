@@ -1,0 +1,62 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:aop="http://www.springframework.org/schema/aop"
+	xsi:schemaLocation="http://www.springframework.org/schema/beans
+       http://www.springframework.org/schema/beans/spring-beans-2.0.xsd
+       http://www.springframework.org/schema/aop http://www.springframework.org/schema/aop/spring-aop-2.0.xsd">
+
+	<bean id="containerBean"
+		class="org.bambrikii.site.base.struts2.core.beans.ManagerContainerBean"
+		destroy-method="destroy" scope="request">
+	</bean>
+
+	<bean id="securityBean" class="org.bambrikii.web.site.security.SecurityBean"
+		scope="prototype">
+		<property name="informUserStatusTemplateKey" value=".ru.psfotos.inform.user.status.templateKey" />
+		<property name="restoreUserPasswordTemplateKey"
+			value=".ru.psfotos.restore.user.password.templateKey" />
+		<!-- <property name="mailingBean" ref="mailingBean" /> -->
+		<property name="containerBean" ref="containerBean" />
+	</bean>
+
+
+	<bean id="discussionBean"
+		class="org.bambrikii.web.site.services.discussion.DiscussionBean"
+		scope="prototype">
+		<property name="containerBean" ref="containerBean" />
+	</bean>
+
+	<bean id="dictionaryBean"
+		class="org.bambrikii.web.site.services.dictionary.DictionaryBean"
+		scope="prototype">
+		<property name="containerBean" ref="containerBean" />
+	</bean>
+
+	<!-- Actions -->
+	<bean id="loginAction" class="org.bambrikii.web.site.security.LoginAction"
+		scope="prototype">
+		<property name="securityBean" ref="securityBean" />
+	</bean>
+
+	<bean id="messagesAction"
+		class="org.bambrikii.web.site.services.discussion.MessageAction"
+		scope="prototype">
+		<property name="discussionBean" ref="discussionBean" />
+		<property name="securityBean" ref="securityBean" />
+	</bean>
+
+	<bean id="topicAction" class="org.bambrikii.web.site.services.discussion.TopicAction"
+		scope="prototype">
+		<property name="discussionBean" ref="discussionBean" />
+		<property name="securityBean" ref="securityBean" />
+	</bean>
+
+	<bean id="dictionaryAction"
+		class="org.bambrikii.web.site.services.dictionary.DictionaryAction"
+		scope="prototype">
+		<property name="dictionaryBean" ref="dictionaryBean" />
+	</bean>
+
+</beans>
+

@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN" "http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+<hibernate-mapping>
+	<joined-subclass name="org.bambrikii.kbManager.kb2.model.ArtefactAsImage"
+		extends="org.bambrikii.kbManager.kb2.model.Artefact" table="kb_artefact_as_image">
+		<key column="artefact_id" />
+		<property name="bytes" column="bytes" type="blob" />
+	</joined-subclass>
+</hibernate-mapping>

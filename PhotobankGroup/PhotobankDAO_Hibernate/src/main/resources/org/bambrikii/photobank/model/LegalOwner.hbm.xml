@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN" "http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+<hibernate-mapping>
+	<class name="org.bambrikii.photobank.model.LegalOwner" table="_photobank_legalowner">
+		<id column="ID" name="id" type="integer">
+			<generator class="identity" />
+		</id>
+		<property column="Name" name="name" type="string" />
+		<property column="HomePage" name="homePage" type="string" />
+		<property column="State" name="state" type="int" />
+		<property column="IPTCMarker1" name="iptcMarker1" type="string" />
+		<property column="IPTCMarker2" name="iptcMarker2" type="string" />
+		<property column="IPTCMarker2Name" name="iptcMarker2Name"
+			type="string" />
+	</class>
+</hibernate-mapping>

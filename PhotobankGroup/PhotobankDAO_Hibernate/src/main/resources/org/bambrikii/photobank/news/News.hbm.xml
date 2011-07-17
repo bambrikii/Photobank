@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN" "http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+<hibernate-mapping>
+	<class name="org.bambrikii.photobank.news.model.News" table="_photobank_news">
+		<id column="id" name="id" type="integer">
+			<generator class="identity" />
+		</id>
+		<property column="title" name="title" type="string" />
+		<property column="content" name="content" type="string" />
+		<property column="time" name="time" type="date" />
+		<property column="modification_time" name="modificationTime"
+			type="timestamp" />
+		<property column="status" name="status">
+			<type name="org.hibernate.type.EnumType">
+				<param name="enumClass">org.bambrikii.photobank.news.model.NewsStatusEnum</param>
+				<param name="type">12</param>
+			</type>
+		</property>
+		<map name="localizations" table="_photobank_news_localized"
+			cascade="all,delete-orphan">
+			<key column="news_id" foreign-key="id" not-null="true" update="false" />
+			<map-key column="language_id" type="integer" />
+			<one-to-many class="org.bambrikii.photobank.news.model.NewsLocalized" />
+		</map>
+
+	</class>
+</hibernate-mapping>

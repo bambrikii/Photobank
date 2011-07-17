@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<decorators defaultdir="/WEB-INF/decorators">
+
+	<excludes>
+		<pattern>/nodecorate/*</pattern>
+		<pattern>/styles/*</pattern>
+		<pattern>/scripts/*</pattern>
+		<pattern>/images/*</pattern>
+		<pattern>/dojo/*</pattern>
+		<pattern>/struts/*</pattern>
+	</excludes>
+
+	<decorator name="plain" page="plain.jsp">
+		<pattern>/photoPreview!*.action</pattern>
+		<pattern>/photoUpload!*.action</pattern>
+		<pattern>/robocash!*.action</pattern>
+	</decorator>
+
+	<decorator name="main" page="main.jsp">
+		<pattern>/*</pattern>
+	</decorator>
+
+</decorators>
