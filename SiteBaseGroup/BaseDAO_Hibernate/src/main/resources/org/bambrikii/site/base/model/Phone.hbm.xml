@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN" "http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+<hibernate-mapping>
+	<class name="org.bambrikii.site.base.model.Phone" table="site_user_phone">
+		<id column="id" name="id" type="integer">
+			<generator class="identity" />
+		</id>
+		<property name="number" column="number" type="string" />
+		<many-to-one class="org.bambrikii.site.base.auth.model.User"
+			column="user_id" name="user" />
+		<property column="phone_type" name="type">
+			<type name="org.hibernate.type.EnumType">
+				<param name="enumClass">org.bambrikii.site.base.model.PhoneTypeEnum</param>
+				<param name="type">12</param>
+			</type>
+		</property>
+	</class>
+</hibernate-mapping>

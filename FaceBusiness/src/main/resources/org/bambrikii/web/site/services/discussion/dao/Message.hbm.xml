@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN" "http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+<hibernate-mapping>
+	<class name="org.bambrikii.web.site.services.discussion.model.Message"
+		table="face_discussions_message">
+		<id column="id" name="id" type="integer">
+			<generator class="identity" />
+		</id>
+		<property column="title" name="title" type="string" />
+		<property column="text" name="text" type="string" />
+		<property column="modification_time" name="modificationTime"
+			type="timestamp" />
+		<many-to-one class="org.bambrikii.site.base.auth.model.User"
+			column="author_user_id" name="author" />
+		<many-to-one class="org.bambrikii.web.site.services.discussion.model.Topic"
+			column="topic_id" name="topic" />
+		<many-to-one class="org.bambrikii.web.site.services.discussion.model.Message"
+			column="parent_id" name="parent" />
+		<property column="status" name="status">
+			<type name="org.hibernate.type.EnumType">
+				<param name="enumClass">org.bambrikii.web.site.services.discussion.model.MessageStatusEnum</param>
+				<param name="type">12</param>
+			</type>
+		</property>
+	</class>
+</hibernate-mapping>

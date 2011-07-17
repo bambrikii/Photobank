@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN" "http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+<hibernate-mapping>
+	<joined-subclass
+		name="org.bambrikii.photobank.logging.model.FilePreviewCounter"
+		extends="org.bambrikii.site.base.logging.model.Counter" table="_photobank_file_preview_counter">
+		<key column="counter_id" />
+		<many-to-one class="org.bambrikii.photobank.model.File"
+			column="file_id" name="file" update="false" />
+	</joined-subclass>
+</hibernate-mapping>

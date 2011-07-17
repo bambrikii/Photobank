@@ -1,0 +1,39 @@
+/*
+CREATE TABLE `kb_artefact` (
+  `id` INTEGER UNSIGNED NOT NULL AUTO_INCREMENT,
+  `key` VARCHAR(255) NOT NULL,
+  PRIMARY KEY (`id`)
+)
+ENGINE = MyISAM
+CHARACTER SET utf8 COLLATE utf8_general_ci;
+*/
+
+CREATE TABLE `kb_artefact_as_text` (
+  `id` INTEGER UNSIGNED NOT NULL AUTO_INCREMENT,
+  `artefact_id` INTEGER UNSIGNED NOT NULL,
+  `title` VARCHAR(255) NOT NULL,
+  `text` TEXT NOT NULL,
+  `publication_time` TIMESTAMP NOT NULL,
+  PRIMARY KEY (`id`)
+)
+ENGINE = MyISAM
+CHARACTER SET utf8 COLLATE utf8_general_ci;
+
+CREATE TABLE `kb_artefact_as_image` (
+  `id` INTEGER UNSIGNED NOT NULL AUTO_INCREMENT,
+  `bytes` BLOB NOT NULL,
+  PRIMARY KEY (`id`)
+)
+ENGINE = MyISAM
+CHARACTER SET utf8 COLLATE utf8_general_ci;
+
+CREATE TABLE `kb_artefact_relation` (
+  `id` INTEGER UNSIGNED NOT NULL AUTO_INCREMENT,
+  `artefact_id` INTEGER UNSIGNED NOT NULL,
+  `source_id` INTEGER UNSIGNED NOT NULL,
+  `target_id` INTEGER UNSIGNED NOT NULL,
+  `kind_id` INTEGER UNSIGNED NOT NULL,
+  PRIMARY KEY (`id`)
+)
+ENGINE = MyISAM
+CHARACTER SET utf8 COLLATE utf8_general_ci;

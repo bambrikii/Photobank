@@ -1,0 +1,34 @@
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+	<parent>
+		<artifactId>SiteBaseGroup</artifactId>
+		<groupId>org.bambrikii.site.base</groupId>
+		<version>1.2</version>
+		<relativePath>../SiteBaseGroup</relativePath>
+	</parent>
+	<modelVersion>4.0.0</modelVersion>
+	<groupId>org.bambrikii.photobank</groupId>
+	<artifactId>PhotobankGroup</artifactId>
+	<version>1.2</version>
+	<name>PhotobankGroup</name>
+	<packaging>pom</packaging>
+	<properties>
+		<project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
+		<project.reporting.outputEncoding>UTF-8</project.reporting.outputEncoding>
+	</properties>
+
+	<modules>
+		<module>PhotobankImaging</module>
+		<module>PhotobankMailing</module>
+
+		<module>PhotobankModel</module>
+		<module>PhotobankDAO</module>
+		<module>PhotobankDAO_Hibernate</module>
+		<module>PhotobankBusiness</module>
+
+		<module>PhotobankWeb_Documents</module>
+		<module>PhotobankWeb</module>
+
+		<module>PhotobankWeb_DtUtils</module>
+	</modules>
+</project>

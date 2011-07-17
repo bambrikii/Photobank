@@ -1,0 +1,77 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE log4j:configuration SYSTEM "log4j.dtd">
+<log4j:configuration xmlns:log4j='http://jakarta.apache.org/log4j/'>
+
+	<appender name="consoleAppender" class="org.apache.log4j.ConsoleAppender">
+		<layout class="org.apache.log4j.PatternLayout">
+			<param name="ConversionPattern" value="%d [%-11t] %-5p %c %x - %m%n" />
+		</layout>
+		<!-- <filter class="org.apache.log4j.varia.LevelRangeFilter"> <param name="levelMin"
+			value="WARN" /> <param name="levelMax" value="INFO" /> </filter> -->
+	</appender>
+
+	<appender name="defaultAppender" class="org.apache.log4j.DailyRollingFileAppender">
+		<param name="file" value="logs/default.log" />
+		<param name="DatePattern" value="'.'yyyy-MM-dd'.log'" />
+
+		<layout class="org.apache.log4j.PatternLayout">
+			<param name="ConversionPattern" value="%d %-5r [%-11t] %-5p %c %x - %m%n" />
+		</layout>
+	</appender>
+
+	<appender name="previewAppender" class="org.apache.log4j.DailyRollingFileAppender">
+		<param name="file" value="logs/preview.log" />
+		<param name="DatePattern" value="'.'yyyy-MM-dd'.log'" />
+
+		<layout class="org.apache.log4j.PatternLayout">
+			<param name="ConversionPattern" value="%d %-5r [%-11t] %-5p %c %x - %m%n" />
+		</layout>
+	</appender>
+
+	<appender name="orderAppender" class="org.apache.log4j.DailyRollingFileAppender">
+		<param name="file" value="logs/order.log" />
+		<param name="DatePattern" value="'.'yyyy-MM-dd'.log'" />
+
+		<layout class="org.apache.log4j.PatternLayout">
+			<param name="ConversionPattern" value="%d %-5r [%-11t] %-5p %c %x - %m%n" />
+		</layout>
+	</appender>
+
+	<logger name="org.bambrikii.ru.psfotos.dtutils.remoteuploader3"
+		additivity="false">
+		<level value="debug" />
+		<appender-ref ref="defaultAppender" />
+		<appender-ref ref="consoleAppender" />
+	</logger>
+	<!--
+	<logger
+		name="org.bambrikii.ru.psfotos.dtutils.remoteuploader3.threads.UploadPreviewThread"
+		additivity="false">
+		<level value="debug" />
+		<appender-ref ref="previewAppender" />
+	</logger>
+	<logger
+		name="org.bambrikii.ru.psfotos.dtutils.remoteuploader3.handlers.ItemUploadCompleteListenerPreviewImpl"
+		additivity="false">
+		<level value="debug" />
+		<appender-ref ref="previewAppender" />
+	</logger>
+	<logger
+		name="org.bambrikii.ru.psfotos.dtutils.remoteuploader3.threads.UploadOrderThread"
+		additivity="false">
+		<level value="debug" />
+		<appender-ref ref="orderAppender" />
+	</logger>
+	<logger
+		name="org.bambrikii.ru.psfotos.dtutils.remoteuploader3.handlers.ItemUploadCompleteListenerOrderImpl"
+		additivity="false">
+		<level value="debug" />
+		<appender-ref ref="orderAppender" />
+	</logger>
+	  -->
+	<root>
+		<level value="info" />
+		<!-- <appender-ref ref="consoleAppender" /> -->
+	</root>
+
+</log4j:configuration>

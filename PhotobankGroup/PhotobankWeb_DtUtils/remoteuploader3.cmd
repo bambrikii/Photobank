@@ -1,0 +1,1 @@
+java -jar PSFotos.Ru_DtUtils.jar "http://89.108.124.46/photobank" "D:\Temporary Files\personastars.com" "D:\Temporary Files\personastars.com"

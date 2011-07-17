@@ -1,0 +1,241 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:aop="http://www.springframework.org/schema/aop"
+	xsi:schemaLocation="http://www.springframework.org/schema/beans
+       http://www.springframework.org/schema/beans/spring-beans-2.0.xsd
+       http://www.springframework.org/schema/aop http://www.springframework.org/schema/aop/spring-aop-2.0.xsd">
+	<!-- shared beans -->
+	<bean id="containerBean"
+		class="org.bambrikii.site.base.struts2.core.beans.ManagerContainerBean"
+		destroy-method="destroy" scope="request">
+	</bean>
+
+	<bean id="loggingBean"
+		class="org.bambrikii.photobank.web.logging.beans.LoggingBean"
+		scope="prototype">
+		<property name="containerBean" ref="containerBean" />
+	</bean>
+
+	<bean id="mailingBean"
+		class="org.bambrikii.photobank.web.mailing.beans.MailingBeanImpl"
+		scope="prototype">
+		<property name="containerBean" ref="containerBean" />
+	</bean>
+
+	<bean id="authBean" class="org.bambrikii.site.base.struts2.security.beans.AuthBean"
+		scope="prototype">
+		<property name="informUserStatusTemplateKey" value=".ru.psfotos.inform.user.status.templateKey" />
+		<property name="restoreUserPasswordTemplateKey"
+			value=".ru.psfotos.restore.user.password.templateKey" />
+		<property name="mailingBean" ref="mailingBean" />
+		<property name="containerBean" ref="containerBean" />
+	</bean>
+
+	<bean id="photoBean" class="org.bambrikii.photobank.web.file.beans.PhotoBean"
+		scope="prototype">
+		<property name="containerBean" ref="containerBean" />
+	</bean>
+
+	<bean id="categoryBean"
+		class="org.bambrikii.photobank.web.category.beans.CategoryBean"
+		scope="prototype">
+		<property name="containerBean" ref="containerBean" />
+	</bean>
+
+	<bean id="eventBean"
+		class="org.bambrikii.photobank.web.events.beans.EventBean"
+		scope="prototype">
+		<property name="containerBean" ref="containerBean" />
+	</bean>
+
+	<bean id="robocashBean"
+		class="org.bambrikii.photobank.web.payment.beans.RobocashBean"
+		scope="prototype">
+		<property name="containerBean" ref="containerBean" />
+	</bean>
+
+	<bean id="basketBean"
+		class="org.bambrikii.photobank.web.payment.beans.BasketBean"
+		scope="prototype">
+		<property name="containerBean" ref="containerBean" />
+		<property name="robocashBean" ref="robocashBean" />
+	</bean>
+
+	<bean id="orderManagementBean"
+		class="org.bambrikii.photobank.web.payment.beans.OrderManagementBean"
+		scope="prototype">
+		<property name="containerBean" ref="containerBean" />
+		<property name="mailingBean" ref="mailingBean" />
+		<property name="basketBean" ref="basketBean" />
+	</bean>
+
+	<bean id="filePriceBean"
+		class="org.bambrikii.photobank.web.payment.beans.FilePriceBean"
+		scope="prototype">
+		<property name="containerBean" ref="containerBean" />
+	</bean>
+
+	<bean id="newsBean" class="org.bambrikii.photobank.web.news.beans.NewsBean"
+		scope="prototype">
+		<property name="containerBean" ref="containerBean" />
+	</bean>
+
+	<!-- action beans -->
+
+	<bean id="helloWorldAction"
+		class="org.bambrikii.photobank.web.examples.HelloWorldAction"
+		scope="prototype" />
+
+	<bean id="indexAction" class="org.bambrikii.photobank.web.IndexAction"
+		scope="prototype">
+		<property name="eventBean" ref="eventBean" />
+		<property name="photoBean" ref="photoBean" />
+		<property name="newsBean" ref="newsBean" />
+	</bean>
+
+
+	<bean id="loginAction" class="org.bambrikii.photobank.web.security.LoginAction"
+		scope="prototype">
+		<property name="authBean" ref="authBean" />
+	</bean>
+
+	<bean id="profileAction"
+		class="org.bambrikii.photobank.web.security.ProfileAction"
+		scope="prototype">
+		<property name="authBean" ref="authBean" />
+	</bean>
+
+	<bean id="basketAction" class="org.bambrikii.photobank.web.payment.BasketAction"
+		scope="prototype">
+		<property name="basketBean" ref="basketBean" />
+	</bean>
+
+	<bean id="basketAjaxAction"
+		class="org.bambrikii.photobank.web.payment.basketajax.BasketAjaxAction"
+		scope="prototype">
+		<property name="photoBean" ref="photoBean" />
+		<property name="filePriceBean" ref="filePriceBean" />
+		<property name="loggingBean" ref="loggingBean" />
+	</bean>
+
+	<bean id="basketArchiveAction"
+		class="org.bambrikii.photobank.web.payment.BasketArchiveAction"
+		scope="prototype">
+		<property name="basketBean" ref="basketBean" />
+		<property name="filePriceBean" ref="filePriceBean" />
+	</bean>
+
+	<bean id="orderAcion" class="org.bambrikii.photobank.web.payment.OrderAction"
+		scope="prototype">
+		<property name="orderManagementBean" ref="orderManagementBean" />
+	</bean>
+
+
+	<!-- Events -->
+	<bean id="EventAction" class="org.bambrikii.photobank.web.events.EventAction"
+		scope="prototype">
+		<property name="eventBean" ref="eventBean" />
+	</bean>
+
+	<bean id="EventEditAction"
+		class="org.bambrikii.photobank.web.events.EventEditAction"
+		scope="prototype">
+		<property name="eventBean" ref="eventBean" />
+		<property name="photoBean" ref="photoBean" />
+	</bean>
+
+
+	<!-- Categories -->
+	<bean id="categoryAction"
+		class="org.bambrikii.photobank.web.category.CategoryAction"
+		scope="prototype">
+		<property name="categoryBean" ref="categoryBean" />
+	</bean>
+
+	<bean id="categoryEditAction"
+		class="org.bambrikii.photobank.web.category.CategoryEditAction"
+		scope="prototype">
+		<property name="categoryBean" ref="categoryBean" />
+		<property name="photoBean" ref="photoBean" />
+	</bean>
+
+
+
+	<!-- Photos -->
+	<bean id="photoAction" class="org.bambrikii.photobank.web.file.PhotoAction"
+		scope="prototype">
+		<property name="photoBean" ref="photoBean" />
+		<property name="newsBean" ref="newsBean" />
+	</bean>
+
+	<bean id="photoEditAction" class="org.bambrikii.photobank.web.file.PhotoAction"
+		scope="prototype">
+		<property name="photoBean" ref="photoBean" />
+	</bean>
+
+	<bean id="photoEditAjaxAction"
+		class="org.bambrikii.photobank.web.file.fileajax.PhotoEditAjaxAction"
+		scope="prototype">
+		<property name="photoBean" ref="photoBean" />
+	</bean>
+
+	<bean id="photoUploadAction"
+		class="org.bambrikii.photobank.web.file.PhotoUploadAction"
+		scope="prototype">
+		<property name="photoBean" ref="photoBean" />
+	</bean>
+
+	<bean id="photoPreviewAction"
+		class="org.bambrikii.photobank.web.file.PhotoPreviewAction"
+		scope="prototype">
+		<property name="photoBean" ref="photoBean" />
+	</bean>
+
+
+	<!-- Payments -->
+	<bean id="robocashAction"
+		class="org.bambrikii.photobank.web.payment.RobocashAction"
+		scope="prototype">
+		<property name="robocashBean" ref="robocashBean" />
+		<property name="orderManagementBean" ref="orderManagementBean" />
+		<property name="loggingBean" ref="loggingBean" />
+	</bean>
+
+	<bean id="robocashAjaxAction"
+		class="org.bambrikii.photobank.web.payment.basketajax.RobocashAjaxAction"
+		scope="prototype">
+		<property name="basketBean" ref="basketBean" />
+		<property name="orderManagementBean" ref="orderManagementBean" />
+	</bean>
+	<!-- Security -->
+	<bean id="userAction" class="org.bambrikii.photobank.web.security.UserAction"
+		scope="prototype">
+		<property name="authBean" ref="authBean" />
+	</bean>
+
+	<bean id="restorePasswordAction"
+		class="org.bambrikii.photobank.web.security.RestorePasswordAction"
+		scope="prototype">
+		<property name="authBean" ref="authBean" />
+	</bean>
+
+	<bean id="userConsiderationAction"
+		class="org.bambrikii.photobank.web.security.UserStatusConsiderationAction"
+		scope="prototype">
+		<property name="authBean" ref="authBean" />
+	</bean>
+
+	<!-- News -->
+
+	<bean id="newsAction" class="org.bambrikii.photobank.web.news.NewsAction"
+		scope="prototype">
+		<property name="newsBean" ref="newsBean" />
+	</bean>
+
+	<bean id="newsEditAction" class="org.bambrikii.photobank.web.news.NewsEditAction"
+		scope="prototype">
+		<property name="newsBean" ref="newsBean" />
+	</bean>
+
+</beans>

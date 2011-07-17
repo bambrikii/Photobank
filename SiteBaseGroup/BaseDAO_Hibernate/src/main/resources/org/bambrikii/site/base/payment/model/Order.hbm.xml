@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN" "http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+<hibernate-mapping>
+	<class name="org.bambrikii.site.base.payment.model.Order" table="site_order">
+		<id column="id" name="id" type="integer">
+			<generator class="identity" />
+		</id>
+		<property column="modification_time" name="modificationTime"
+			type="timestamp" />
+		<property column="status" name="status">
+			<type name="org.hibernate.type.EnumType">
+				<param name="enumClass">org.bambrikii.site.base.payment.model.OrderStatusEnum</param>
+				<param name="type">12</param>
+			</type>
+		</property>
+		<many-to-one class="org.bambrikii.site.base.auth.model.User"
+			column="id_customer" name="client" />
+		<bag name="items" cascade="all,delete-orphan" lazy="false">
+			<key column="order_id" foreign-key="id" not-null="true" update="false" />
+			<one-to-many class="org.bambrikii.site.base.payment.model.OrderItem" />
+		</bag>
+	</class>
+</hibernate-mapping>

@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN" "http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+<hibernate-mapping>
+	<joined-subclass name="org.bambrikii.photobank.payment.model.PhotoOrderItem"
+		extends="org.bambrikii.site.base.payment.model.OrderItem" table="_photobank_order_item">
+		<key column="order_item_id" />
+		<many-to-one class="org.bambrikii.photobank.model.File"
+			column="file_id" name="file" />
+		<many-to-one class="org.bambrikii.photobank.model.FileDimension"
+			column="file_dimension_id" name="dimension" />
+	</joined-subclass>
+</hibernate-mapping>

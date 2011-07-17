@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN" "http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+<hibernate-mapping>
+	<class name="org.bambrikii.kbManager.feeds.model.FeedNews" table="Feed_News">
+		<id column="ID" name="id" type="integer">
+			<generator class="identity" />
+		</id>
+		<property column="Title" name="title" type="string" />
+		<property column="[Description]" name="description" type="string" />
+		<property column="[Content]" name="content" type="string" />
+		<property column="URL" name="url" type="string" />
+		<property column="[Author]" name="author" type="string" />
+		<property column="PubDate" name="pubDate" type="timestamp" />
+		<many-to-one name="site"
+			class="org.bambrikii.kbManager.feeds.model.FeedSite" column="FeedSiteID" />
+	</class>
+</hibernate-mapping>

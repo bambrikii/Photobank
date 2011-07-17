@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN" "http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+<hibernate-mapping>
+	<class name="org.bambrikii.kbManager.kb2.model.Artefact" table="kb_artefact">
+		<id column="id" name="id" type="integer">
+			<generator class="identity" />
+		</id>
+		<property column="`key`" name="key" type="string" />
+		<bag name="srcParents" cascade="all">
+			<key column="source_id" foreign-key="id" />
+			<one-to-many class="org.bambrikii.kbManager.kb2.model.Relation" />
+		</bag>
+		<bag name="dstParents" cascade="all">
+			<key column="destination_id" foreign-key="id" />
+			<one-to-many class="org.bambrikii.kbManager.kb2.model.Relation" />
+		</bag>
+		<bag name="kndParents" cascade="all">
+			<key column="kind_id" foreign-key="id" />
+			<one-to-many class="org.bambrikii.kbManager.kb2.model.Relation" />
+		</bag>
+	</class>
+</hibernate-mapping>

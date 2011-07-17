@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN" "http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+<hibernate-mapping>
+	<class name="org.bambrikii.photobank.model.IptcGroup" table="_photobank_file_iptc">
+		<id column="Id" name="id" type="integer">
+			<generator class="identity" />
+		</id>
+		<many-to-one class="org.bambrikii.photobank.model.File"
+			column="File_ID" name="file" not-null="true" update="false" />
+		<property column="GroupName" name="name" type="string" />
+		<bag cascade="all-delete-orphan" name="fields">
+			<key column="Group_ID" foreign-key="Id" update="false" />
+			<one-to-many class="org.bambrikii.photobank.model.IptcField" />
+		</bag>
+		<property column="ModificationTime" name="modificationTime"
+			type="timestamp" />
+	</class>
+</hibernate-mapping>

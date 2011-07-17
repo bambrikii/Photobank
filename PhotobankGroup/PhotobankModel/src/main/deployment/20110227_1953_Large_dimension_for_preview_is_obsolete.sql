@@ -1,0 +1,1 @@
+delete from site_configuration where `name` = '.ru.psfotos.images.LargePreview.Dim';

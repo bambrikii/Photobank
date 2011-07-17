@@ -1,0 +1,12 @@
+truncate _photobank_order_item;
+truncate _photobank_order;
+truncate _photobank_file_preview_counter;
+truncate _photobank_file_iptc_field;
+truncate _photobank_file_iptc;
+truncate _photobank_files_transactions;
+truncate _photobank_files;
+truncate _photobank_event;
+delete from _photobank_categories where `id` not in (1,2,3);
+truncate site_counter;
+truncate site_order_item;
+truncate site_order;

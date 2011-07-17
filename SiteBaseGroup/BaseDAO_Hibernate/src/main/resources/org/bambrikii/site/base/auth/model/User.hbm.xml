@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN" "http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+<hibernate-mapping>
+	<class name="org.bambrikii.site.base.auth.model.User" table="site_users">
+		<id column="id" name="id" type="integer">
+			<generator class="identity" />
+		</id>
+		<property column="name" name="login" type="string" />
+		<property column="surname" name="surname" type="string" />
+		<property column="firstname" name="firstname" type="string" />
+		<property column="passwd" name="password" type="string" />
+		<property column="modification_time" name="modificationTime"
+			type="timestamp" />
+		<property column="email" name="email" type="string" />
+		<property column="address" name="address" type="string" />
+		<property column="date_of_birth" name="dateOfBirth" type="date" />
+		<property column="organization" name="organization" type="string" />
+		<property column="sort_of_activity" name="sortOfActivity"
+			type="string" />
+		<property column="about" name="about" type="string" />
+		<property column="passwd_sha1" name="passwdSHA1" type="string" />
+		<list name="groups" table="site_user_group">
+			<key column="user_id" />
+			<index column="id" />
+			<many-to-many class="org.bambrikii.site.base.auth.model.Group">
+				<column name="group_id"></column>
+			</many-to-many>
+		</list>
+		<many-to-one class="org.bambrikii.site.base.model.Language"
+			column="language_id" name="language" />
+		<bag name="phones" cascade="all" lazy="false" inverse="true">
+			<key column="user_id" foreign-key="id" on-delete="cascade" />
+			<one-to-many class="org.bambrikii.site.base.model.Phone" />
+		</bag>
+		<property column="status" name="status">
+			<type name="org.hibernate.type.EnumType">
+				<param name="enumClass">org.bambrikii.site.base.auth.model.UserStatusEnum</param>
+				<param name="type">12</param>
+			</type>
+		</property>
+		<property column="patronymic" name="patronymic" type="string" />
+	</class>
+</hibernate-mapping>

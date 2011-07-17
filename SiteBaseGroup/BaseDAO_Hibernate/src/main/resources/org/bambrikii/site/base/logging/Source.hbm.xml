@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN" "http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+<hibernate-mapping>
+	<class name="org.bambrikii.site.base.logging.model.Source"
+		table="site_log_source">
+		<id column="id" name="id" type="integer">
+			<generator class="identity" />
+		</id>
+		<property column="name" name="name" type="string" update="true" />
+	</class>
+</hibernate-mapping>

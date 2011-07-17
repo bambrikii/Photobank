@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<schema xmlns="http://www.w3.org/2001/XMLSchema"
+	targetNamespace="http://model.handlers.remoteuploader3.dtutils.web.photobank.bambrikii.org/PersistenceContainer"
+	xmlns:tns="http://model.handlers.remoteuploader3.dtutils.web.photobank.bambrikii.org/PersistenceContainer"
+	elementFormDefault="qualified">
+
+	<complexType name="UploadItem">
+		<attribute name="absolutePath" type="string"></attribute>
+	</complexType>
+
+	<complexType name="FailedFiles">
+		<sequence>
+			<element minOccurs="1" maxOccurs="1" name="name">
+				<simpleType id="name">
+					<restriction base="string"></restriction>
+				</simpleType>
+			</element>
+			<element name="UploadItems" minOccurs="0" maxOccurs="unbounded"
+				type="tns:UploadItem"></element>
+		</sequence>
+	</complexType>
+
+	<element name="PersistenceContainer">
+		<complexType>
+			<sequence>
+				<element name="FailedFiles" type="tns:FailedFiles"
+					minOccurs="0" maxOccurs="unbounded"></element>
+			</sequence>
+		</complexType>
+	</element>
+
+</schema>

@@ -1,0 +1,11 @@
+CREATE TABLE `site_email_template` (
+  `id` INTEGER UNSIGNED NOT NULL AUTO_INCREMENT,
+  `key` VARCHAR(45) NOT NULL,
+  `subject` VARCHAR(255) NOT NULL,
+  `body` TEXT NOT NULL,
+  `content_type` ENUM('TEXT_PLAIN','TEXT_HTML') NOT NULL,
+  PRIMARY KEY (`id`),
+  UNIQUE INDEX `keyIndex`(`key`)
+)
+ENGINE = MyISAM
+CHARACTER SET cp1251 COLLATE cp1251_general_ci;

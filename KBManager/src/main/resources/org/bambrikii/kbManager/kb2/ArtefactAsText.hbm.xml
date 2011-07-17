@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN" "http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+<hibernate-mapping>
+	<joined-subclass name="org.bambrikii.kbManager.kb2.model.ArtefactAsText"
+		extends="org.bambrikii.kbManager.kb2.model.Artefact" table="kb_artefact_as_text">
+		<key column="artefact_id" />
+		<property name="title" column="title" />
+		<property name="text" column="text" />
+		<property name="publicationTime" column="publication_time"
+			type="timestamp" />
+	</joined-subclass>
+</hibernate-mapping>

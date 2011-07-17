@@ -1,0 +1,301 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<!DOCTYPE struts PUBLIC
+    "-//Apache Software Foundation//DTD Struts Configuration 2.0//EN"
+    "http://struts.apache.org/dtds/struts-2.0.dtd">
+
+<struts>
+
+	<package name="myPackage" namespace="/examples" extends="struts-default">
+		<action name="index"
+			class="org.bambrikii.photobank.web.examples.IndexAction">
+			<result>/jsp/examples/index.jsp</result>
+		</action>
+		<action name="helloWorld" class="helloWorldAction">
+			<result name="input">/jsp/examples/index.jsp</result>
+			<result>/jsp/examples/helloWorld.jsp</result>
+		</action>
+	</package>
+
+	<package name="psfotos" namespace="/" extends="struts-default">
+		<interceptors>
+			<interceptor name="securityInterceptor"
+				class="org.bambrikii.site.base.struts2.security.interceptors.SiteSecurityInterceptor" />
+			<interceptor-stack name="secureStack">
+				<interceptor-ref name="defaultStack">
+					<param name="workflow.excludeMethods">execute,logout,privilegeRequired</param>
+					<param name="validation.excludeMethods">execute,logout,privilegeRequired</param>
+				</interceptor-ref>
+				<interceptor-ref name="securityInterceptor" />
+			</interceptor-stack>
+		</interceptors>
+		<default-interceptor-ref name="secureStack" />
+
+		<global-results>
+			<result name="login">/jsp/login/index.jsp</result>
+			<result name="privilegeRequired">/jsp/login/privilegeRequired.jsp</result>
+		</global-results>
+
+		<action name="index" class="org.bambrikii.photobank.web.IndexAction">
+			<result>/jsp/index.jsp</result>
+		</action>
+
+		<action name="login"
+			class="org.bambrikii.photobank.web.security.LoginAction">
+			<result name="input">/jsp/login/index.jsp</result>
+			<result name="error">/jsp/login/error.jsp</result>
+			<result name="alreadyLoggedIn">/jsp/login/success.jsp</result>
+			<result name="loginSuccessful" type="redirectAction">profile</result>
+			<result>/jsp/login/index.jsp</result>
+		</action>
+
+		<action name="profile"
+			class="org.bambrikii.photobank.web.security.ProfileAction">
+			<result name="successUpdate">/jsp/profile/success.jsp</result>
+			<result name="input">/jsp/profile/edit.jsp</result>
+			<result>/jsp/profile/edit.jsp</result>
+		</action>
+
+		<action name="restorePassword"
+			class="org.bambrikii.photobank.web.security.RestorePasswordAction">
+			<result name="input">/jsp/login/passwordRestoration.jsp</result>
+			<result name="restore">/jsp/login/passwordRestorationSent.jsp</result>
+			<result>/jsp/login/passwordRestoration.jsp</result>
+		</action>
+
+		<action name="file"
+			class="org.bambrikii.photobank.web.file.PhotoAction">
+			<result name="input">/jsp/file/find.jsp</result>
+			<result name="find">/jsp/file/find.jsp</result>
+			<result name="latest">/jsp/file/latest.jsp</result>
+			<result name="preview">/jsp/basket/preview.jsp</result>
+			<result>/jsp/file/find.jsp</result>
+		</action>
+
+		<action name="event"
+			class="org.bambrikii.photobank.web.events.EventAction">
+			<result name="previewFile">/jsp/basket/previewItem.jsp</result>
+			<result name="files">/jsp/event/files.jsp</result>
+			<result name="briefList">/jsp/event/briefList.jsp</result>
+			<result>/jsp/event/list.jsp</result>
+		</action>
+
+		<action name="eventEdit"
+			class="org.bambrikii.photobank.web.events.EventEditAction">
+			<result name="delete" type="redirectAction">event</result>
+			<result name="input">/jsp/event/edit.jsp</result>
+			<result>/jsp/event/edit.jsp</result>
+		</action>
+
+		<action name="category"
+			class="org.bambrikii.photobank.web.category.CategoryAction">
+			<result name="previewFile">/jsp/basket/previewItem.jsp</result>
+			<result name="files">/jsp/category/files.jsp</result>
+			<result>/jsp/category/list.jsp</result>
+		</action>
+
+		<action name="categoryEdit"
+			class="org.bambrikii.photobank.web.category.CategoryEditAction">
+			<result name="input">/jsp/category/edit.jsp</result>
+			<result>/jsp/category/edit.jsp</result>
+		</action>
+
+		<action name="photoEdit"
+			class="org.bambrikii.photobank.web.file.PhotoEditAction">
+			<result type="redirectAction">file!latest</result>
+		</action>
+
+		<action name="photoUpload"
+			class="org.bambrikii.photobank.web.file.PhotoUploadAction">
+			<result name="uploadResult">/jsp/file/upload.jsp</result>
+			<result name="error">/jsp/file/upload.jsp</result>
+			<result>/jsp/file/massUploadIndex.jsp</result>
+		</action>
+
+		<action name="photoPreview"
+			class="org.bambrikii.photobank.web.file.PhotoPreviewAction">
+			<result name="small" type="stream">
+				<param name="contentType">${contentType}</param>
+				<param name="inputName">inputStream</param>
+				<param name="contentDisposition">filename="${filename}"</param>
+				<param name="bufferSize">1024</param>
+			</result>
+			<result name="large" type="stream">
+				<param name="contentType">${contentType}</param>
+				<param name="inputName">inputStream</param>
+				<param name="contentDisposition">filename="${filename}"</param>
+				<param name="bufferSize">1024</param>
+			</result>
+		</action>
+
+		<action name="photoDownload"
+			class="org.bambrikii.photobank.web.file.PhotoDownloadAction">
+			<result name="item" type="stream">
+				<param name="contentType">${contentType}</param>
+				<param name="inputName">inputStream</param>
+				<param name="contentDisposition">filename="${filename}"</param>
+				<param name="bufferSize">1024</param>
+			</result>
+		</action>
+
+		<action name="basket"
+			class="org.bambrikii.photobank.web.payment.BasketAction">
+			<result name="previewFile">/jsp/basket/previewItem.jsp</result>
+			<result name="previewItem">/jsp/basket/previewItem.jsp</result>
+			<result name="checkout">/jsp/basket/checkout.jsp</result>
+			<result>/jsp/basket/basket.jsp</result>
+		</action>
+
+		<action name="basketArchive"
+			class="org.bambrikii.photobank.web.payment.BasketArchiveAction">
+			<result>/jsp/basket/basketArchivedOrders.jsp</result>
+		</action>
+
+		<action name="user"
+			class="org.bambrikii.photobank.web.security.UserAction">
+			<result name="list">/jsp/user/list.jsp</result>
+			<result name="edit">/jsp/user/edit.jsp</result>
+			<result>/jsp/user/list.jsp</result>
+		</action>
+
+		<action name="userStatusConsideration"
+			class="org.bambrikii.photobank.web.security.UserStatusConsiderationAction">
+			<result name="list">/jsp/user_status/list.jsp</result>
+			<result name="considerStatus">/jsp/user_status/consider_status.jsp</result>
+			<result>/jsp/user_status/list.jsp</result>
+		</action>
+
+		<action name="order"
+			class="org.bambrikii.photobank.web.payment.OrderAction">
+			<result name="list">/jsp/order/list.jsp</result>
+			<result name="edit">/jsp/order/edit.jsp</result>
+			<result>/jsp/order/list.jsp</result>
+		</action>
+
+		<action name="filePrice"
+			class="org.bambrikii.photobank.web.payment.FilePriceAction">
+			<result name="list">/jsp/file_price/list.jsp</result>
+			<result name="input">/jsp/file_price/edit.jsp</result>
+			<result name="edit">/jsp/file_price/edit.jsp</result>
+		</action>
+
+		<action name="robocash"
+			class="org.bambrikii.photobank.web.payment.RobocashAction">
+			<result name="error" type="httpheader">
+				<param name="status">500</param>
+				<param name="headers.a">Failed to process robocash event</param>
+			</result>
+			<result>/jsp/payment/robocash/result.jsp</result>
+		</action>
+
+		<action name="info"
+			class="org.bambrikii.photobank.web.info.InfoAction">
+			<result>/jsp/info/item.jsp</result>
+		</action>
+
+		<action name="news"
+			class="org.bambrikii.photobank.web.news.NewsAction">
+			<result name="preview">/jsp/news/preview.jsp</result>
+			<result>/jsp/news/list.jsp</result>
+		</action>
+
+		<action name="newsEdit"
+			class="org.bambrikii.photobank.web.news.NewsEditAction">
+			<result name="edit">/jsp/news/edit.jsp</result>
+			<result name="list" type="redirectAction">news!list</result>
+			<result>/jsp/news/list.jsp</result>
+		</action>
+
+	</package>
+
+	<package name="ajax" extends="json-default">
+		<interceptors>
+			<interceptor name="securityInterceptor"
+				class="org.bambrikii.site.base.struts2.security.interceptors.SiteSecurityInterceptor" />
+			<interceptor-stack name="secureStack">
+				<interceptor-ref name="defaultStack">
+					<param name="workflow.excludeMethods">execute,logout,privilegeRequired</param>
+					<param name="validation.excludeMethods">execute,logout,privilegeRequired</param>
+				</interceptor-ref>
+				<interceptor-ref name="securityInterceptor" />
+			</interceptor-stack>
+		</interceptors>
+		<default-interceptor-ref name="secureStack" />
+		<global-results>
+			<result name="login" type="redirectAction">
+				<param name="actionName">login</param>
+				<param name="namespace">/</param>
+			</result>
+			<result name="privilegeRequired" type="redirectAction">
+				<param name="actionName">login</param>
+				<param name="namespace">/</param>
+			</result>
+		</global-results>
+		<action name="basketAjax"
+			class="org.bambrikii.photobank.web.payment.basketajax.BasketAjaxAction">
+			<result name="previewItem" type="json">
+				<param name="contentType">application/json</param>
+				<param name="noCache">true</param>
+			</result>
+			<result name="previewFile" type="json">
+				<param name="contentType">application/json</param>
+				<param name="noCache">true</param>
+			</result>
+			<result name="success" type="json">
+				<param name="contentType">application/json</param>
+				<param name="noCache">true</param>
+			</result>
+			<result type="json">
+				<param name="contentType">application/json</param>
+				<param name="noCache">true</param>
+			</result>
+		</action>
+		<action name="photoEditAjax"
+			class="org.bambrikii.photobank.web.file.fileajax.PhotoEditAjaxAction">
+			<result name="success" type="json">
+				<param name="contentType">application/json</param>
+				<param name="noCache">true</param>
+			</result>
+			<result type="json">
+				<param name="contentType">application/json</param>
+				<param name="noCache">true</param>
+			</result>
+		</action>
+		<action name="robocashAjax"
+			class="org.bambrikii.photobank.web.payment.basketajax.RobocashAjaxAction">
+			<result name="success" type="json">
+				<param name="contentType">application/json</param>
+				<param name="noCache">true</param>
+			</result>
+			<result type="json">
+				<param name="contentType">application/json</param>
+				<param name="noCache">true</param>
+			</result>
+		</action>
+
+	</package>
+
+	<package name="registration" namespace="/registration" extends="struts-default">
+
+		<action name="termsAndConditions"
+			class="org.bambrikii.photobank.web.security.registration.TermsAndConditionsAction">
+			<result name="input">/jsp/registration/termsAndConditions.jsp</result>
+			<result name="successAcceptTermsAndConditions" type="redirectAction">register
+			</result>
+			<result>/jsp/registration/termsAndConditions.jsp</result>
+		</action>
+
+		<action name="register"
+			class="org.bambrikii.photobank.web.security.registration.RegisterAction">
+			<interceptor-ref name="defaultStack">
+				<param name="workflow.excludeMethods">execute</param>
+				<param name="validation.excludeMethods">execute</param>
+			</interceptor-ref>
+			<result name="input">/jsp/registration/register.jsp</result>
+			<result name="successRegister">/jsp/registration/success.jsp</result>
+			<result>/jsp/registration/register.jsp</result>
+		</action>
+
+	</package>
+
+</struts>
